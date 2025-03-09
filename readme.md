@@ -107,12 +107,6 @@ The web interface provides a user-friendly way to interact with the course gener
 
 - **GET /api/courses/{task_id}**: Check course generation status
 - **GET /api/courses/{task_id}/download**: Download the complete course
-- **POST /api/courses/{task_id}/refine**: Refine an existing course
-  ```json
-  {
-    "refinement_type": "content",
-    "instructions": "Add more practical exercises to each lesson"
-  }
   ```
 
 ### Example Usage
