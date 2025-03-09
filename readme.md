@@ -259,5 +259,5 @@ Generated courses follow this structure:
 ## Acknowledgments
 
 - This project uses LangChain for LLM orchestration
-- The research component is powered by Tavily API
+- The research component is powered by Tavily API and arXiv.
 - The content generation is handled by OpenAI models
