@@ -58,7 +58,8 @@ The system employs multiple specialized agents working together to create compre
    ```
    OPENAI_API_KEY=your_openai_api_key
    TAVILY_API_KEY=your_tavily_api_key
-   PORT=5000              # Web interface port
+   PORT=5000
+   UI_PORT=5001
    ```
 Change the Model type in config.py
 
@@ -79,8 +80,8 @@ python /api/main.py
 python app.py
 ```
 
-The API server will start on `http://localhost:5001` by default.
-The web interface will be available at `http://localhost:5000`.
+The API server will start on `http://localhost:5000` by default.
+The web interface will be available at `http://localhost:5001`.
 
 ### Web Interface
 
@@ -121,7 +122,7 @@ The web interface provides a user-friendly way to interact with the course gener
    python app.py
    ```
 
-2. Open your browser and navigate to `http://localhost:5000`
+2. Open your browser and navigate to `http://localhost:5001`
 
 3. Use the "Create Course" form to generate a new course:
    - Enter a topic (e.g., "Introduction to Python Programming")
@@ -212,7 +213,6 @@ educational-course-generator/
 ├── static/
 │   ├── css/                 # Stylesheets
 │   ├── js/                  # JavaScript files
-│   └── img/                 # Images
 ├── main.py                  # API server entry point
 ├── app.py                   # Web interface entry point
 ├── config.py                # Configuration settings
