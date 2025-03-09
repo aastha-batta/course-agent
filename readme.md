@@ -14,7 +14,7 @@ The Educational Course Generator is an API-based service that allows users to:
 
 The system employs multiple specialized agents working together to create comprehensive, well-structured educational content.
 
-## System Architecture
+## User Interface
 
 ![User Interface](docs/UI.png)
 
