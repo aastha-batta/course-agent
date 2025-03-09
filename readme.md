@@ -16,7 +16,7 @@ The system employs multiple specialized agents working together to create compre
 
 ## System Architecture
 
-![User Interface](https://drive.google.com/file/d/1NrkzjNm_loG4cfs0Q7YZRNgDRutfUW-t/view?usp=sharing)
+![User Interface](https://imgur.com/a/y4OF6Lm)
 
 ### Core Agents
 
@@ -46,8 +46,7 @@ The system employs multiple specialized agents working together to create compre
 
 2. Create and activate a virtual environment:
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   conda env create -f course-agent.yaml
    ```
 
 3. Install dependencies:
@@ -59,12 +58,9 @@ The system employs multiple specialized agents working together to create compre
    ```
    OPENAI_API_KEY=your_openai_api_key
    TAVILY_API_KEY=your_tavily_api_key
-   LLM_MODEL=gpt-4-turbo  # or another OpenAI model
    PORT=5000              # Web interface port
-   API_PORT=5001          # API server port
-   API_BASE_URL=http://localhost:5001/api
-   SECRET_KEY=your_secret_key  # For Flask sessions
    ```
+Change the Model type in config.py
 
 ## Usage
 
@@ -77,7 +73,7 @@ The system consists of two components:
 
 ```bash
 # Start the API server
-python main.py
+python /api/main.py
 
 # Start the web interface
 python app.py
