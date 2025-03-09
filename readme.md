@@ -107,7 +107,6 @@ The web interface provides a user-friendly way to interact with the course gener
 
 - **GET /api/courses/{task_id}**: Check course generation status
 - **GET /api/courses/{task_id}/download**: Download the complete course
-  ```
 
 ### Example Usage
 
