@@ -50,7 +50,7 @@ class ValidationAgent(BaseAgent):
             "feedback": course_feedback
         })
         
-        # Validate each module and its lessons (limiting to 2 modules for testing)
+        
         for module_index, module in enumerate(modules[:2]):
             module_title = module.get("title", "")
             module_lessons = module.get("lessons", [])
@@ -62,7 +62,7 @@ class ValidationAgent(BaseAgent):
                 validation_issues.append(f"Module '{module_title}' has no lessons")
                 continue
                 
-            # Validate a sample lesson from each module (first lesson)
+            
             if module_lessons and len(module_lessons) > 0:
                 sample_lesson = module_lessons[0]
                 lesson_title = sample_lesson.get("title", "")
