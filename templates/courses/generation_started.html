@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Course Generation Started{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card shadow">
+        <div class="card-header bg-success text-white">
+          <h2>Course Generation Started</h2>
+        </div>
+        <div class="card-body">
+          <div class="alert alert-info">
+            <p><strong>Your course on "{{ topic }}" is being generated.</strong></p>
+            <p>This may take a few minutes to complete.</p>
+          </div>
+
+          <div class="mb-4">
+            <h4>Your Task ID:</h4>
+            <div class="input-group">
+              <input type="text" class="form-control" value="{{ task_id }}" id="taskIdField" readonly>
+              <button class="btn btn-outline-secondary" type="button" onclick="copyTaskId()">
+                <i class="fas fa-copy"></i> Copy
+              </button>
+            </div>
+            <small class="text-muted">Save this ID to check on your course later</small>
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <a href="{{ url_for('courses_list') }}" class="btn btn-secondary">
+              <i class="fas fa-list"></i> All Courses
+            </a>
+            <a href="{{ url_for('view_course', task_id=task_id) }}" class="btn btn-primary">
+              <i class="fas fa-eye"></i> Check Status
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function copyTaskId() {
+  const taskIdField = document.getElementById('taskIdField');
+  taskIdField.select();
+  document.execCommand('copy');
+  
+  // Visual feedback
+  const button = event.currentTarget;
+  const originalText = button.innerHTML;
+  button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+  setTimeout(() => {
+    button.innerHTML = originalText;
+  }, 2000);
+}
+</script>
+{% endblock %}

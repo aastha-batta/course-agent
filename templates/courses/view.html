@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if course.status == 'completed' and course_data %}
+        {{ course_data.title }} - Educational Course Generator
+    {% else %}
+        Course Details - Educational Course Generator
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('courses_list') }}">My Courses</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                {% if course.status == 'completed' and course_data %}
+                    {{ course_data.title }}
+                {% else %}
+                    Course Details
+                {% endif %}
+            </li>
+        </ol>
+    </nav>
+</div>
+
+{% if course.status != 'completed' %}
+    <div class="card mb-4">
+        <div class="card-body text-center py-5">
+            {% if course.status == 'queued' %}
+                <div class="mb-4">
+                    <div class="spinner-border text-warning" role="status" style="width: 3rem; height: 3rem;">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <h2>Course Generation Queued</h2>
+                <p class="text-muted">Your course is queued and will start processing soon.</p>
+            {% elif course.status == 'processing' %}
+                <div class="mb-4">
+                    <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <h2>Generating Your Course</h2>
+                <p class="text-muted">This process usually takes a few minutes. You'll be notified when it's complete.</p>
+                <div class="progress mt-3" style="height: 10px;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 75%"></div>
+                </div>
+            {% elif course.status == 'failed' %}
+                <div class="mb-4 text-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                    </svg>
+                </div>
+                <h2>Course Generation Failed</h2>
+                <p class="text-muted">{{ course.error or "There was an error generating your course. Please try again." }}</p>
+                <a href="{{ url_for('create_course_form') }}" class="btn btn-primary mt-3">Create New Course</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Course Information</h3>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Topic:</dt>
+                <dd class="col-sm-9">{{ course.topic }}</dd>
+                
+                <dt class="col-sm-3">Depth:</dt>
+                <dd class="col-sm-9">{{ course.depth|title }}</dd>
+                
+                <dt class="col-sm-3">Target Audience:</dt>
+                <dd class="col-sm-9">{{ course.target_audience }}</dd>
+                
+                <dt class="col-sm-3">Status:</dt>
+                <dd class="col-sm-9">
+                    {% if course.status == 'queued' %}
+                        <span class="badge bg-warning text-dark">Queued</span>
+                    {% elif course.status == 'processing' %}
+                        <span class="badge bg-primary">Processing</span>
+                    {% elif course.status == 'failed' %}
+                        <span class="badge bg-danger">Failed</span>
+                    {% endif %}
+                </dd>
+                
+                <dt class="col-sm-3">Created At:</dt>
+                <dd class="col-sm-9">{{ course.created_at }}</dd>
+            </dl>
+        </div>
+    </div>
+
+    {% if course.status == 'processing' or course.status == 'queued' %}
+        <div class="text-center mt-4">
+            <p class="text-muted">This page will automatically refresh to check the status.</p>
+            <button class="btn btn-outline-secondary" onclick="location.reload()">Refresh Now</button>
+        </div>
+    {% endif %}
+
+{% else %}
+    <!-- Display completed course content -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h1 class="card-title">{{ course_data.title }}</h1>
+            <p class="lead">{{ course_data.description }}</p>
+            
+            <div class="d-flex justify-content-between align-items-center mt-4">
+                <div>
+                    <span class="badge bg-success me-2">Completed</span>
+                    <span class="badge bg-secondary me-2">{{ course_data.depth|title }}</span>
+                    <span class="badge bg-info text-dark">{{ course_data.course_duration }}</span>
+                </div>
+                <div>
+                    <a href="{{ url_for('download_course', task_id=course.id) }}" class="btn btn-outline-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                        </svg>
+                        Download JSON
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Course Content -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h2 class="h4 mb-0">Course Modules</h2>
+        </div>
+        <div class="card-body p-0">
+            <div class="accordion" id="courseModules">
+                {% for module in course_data.modules %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="module-heading-{{ loop.index }}">
+                            <button class="accordion-button {% if not loop.first %}collapsed{% endif %}" type="button" 
+                                    data-bs-toggle="collapse" data-bs-target="#module-content-{{ loop.index }}" 
+                                    aria-expanded="{{ 'true' if loop.first else 'false' }}" aria-controls="module-content-{{ loop.index }}">
+                                Module {{ loop.index }}: {{ module.title }}
+                            </button>
+                        </h2>
+                        <div id="module-content-{{ loop.index }}" class="accordion-collapse collapse {% if loop.first %}show{% endif %}" 
+                             aria-labelledby="module-heading-{{ loop.index }}">
+                            <div class="accordion-body">
+                                <p>{{ module.description }}</p>
+                                <p><strong>Duration:</strong> {{ module.duration }}</p>
+                                
+                                <h4 class="mt-4">Lessons</h4>
+                                <ul class="list-group">
+                                    {% for lesson in module.lessons %}
+                                        <li class="list-group-item">
+                                            <h5>{{ lesson.title }}</h5>
+                                            <p>{{ lesson.content|truncate(150) }}</p>
+                                            
+                                            {% if lesson.exercises %}
+                                                <div class="mt-2">
+                                                    <strong>Exercises:</strong> {{ lesson.exercises|length }} available
+                                                </div>
+                                            {% endif %}
+                                            
+                                            {% if lesson.resources %}
+                                                <div class="mt-2">
+                                                    <strong>Resources:</strong> {{ lesson.resources|length }} available
+                                                </div>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Refinement Form -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h2 class="h4 mb-0">Refine This Course</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('refine_course_submit', task_id=course.id) }}">
+                <div class="mb-3">
+                    <label for="refinement_type" class="form-label">Refinement Type</label>
+                    <select class="form-select" id="refinement_type" name="refinement_type">
+                        <option value="general">General Improvements</option>
+                        <option value="content">Content Expansion</option>
+                        <option value="structure">Structural Changes</option>
+                        <option value="audience">Audience Adaptation</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="instructions" class="form-label">Instructions</label>
+                    <textarea class="form-control" id="instructions" name="instructions" rows="3" 
+                              placeholder="Specify how you want the course to be refined..." required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-success">Submit Refinement</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Previous Refinements -->
+    {% if course_data.validation_results and course_data.validation_results.refinements %}
+        <div class="card">
+            <div class="card-header">
+                <h2 class="h4 mb-0">Previous Refinements</h2>
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+                    {% for refinement in course_data.validation_results.refinements %}
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{ refinement.type|title }} Refinement</h5>
+                                <small>{{ refinement.applied_at }}</small>
+                            </div>
+                            <p class="mb-1">{{ refinement.instructions }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+{% if course.status == 'processing' or course.status == 'queued' %}
+<script>
+    // Auto-refresh the page every 5 seconds if the course is being processed
+    setTimeout(function() {
+        location.reload();
+    }, 5000);
+</script>
+{% endif %}
+{% endblock %}

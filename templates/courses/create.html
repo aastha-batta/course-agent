@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Course - Educational Course Generator{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h2 class="h4 mb-0">Create a New Course</h2>
+            </div>
+            <div class="card-body">
+                <form id="courseForm" method="POST" action="{{ url_for('create_course_submit') }}">
+                    <div class="mb-3">
+                        <label for="topic" class="form-label">Topic <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="topic" name="topic" required 
+                               placeholder="e.g., Introduction to Machine Learning">
+                        <div class="form-text">The main subject of your course</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="depth" class="form-label">Depth</label>
+                        <select class="form-select" id="depth" name="depth">
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                        <div class="form-text">The level of complexity for your course</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="target_audience" class="form-label">Target Audience</label>
+                        <input type="text" class="form-control" id="target_audience" name="target_audience" 
+                               placeholder="e.g., College students" value="General audience">
+                        <div class="form-text">Who is this course designed for?</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="course_duration" class="form-label">Course Duration</label>
+                        <select class="form-select" id="course_duration" name="course_duration">
+                            <option value="1 week">1 week</option>
+                            <option value="2 weeks" selected>2 weeks</option>
+                            <option value="3 weeks">3 weeks</option>
+                            <option value="4 weeks">4 weeks</option>
+                        </select>
+                        <div class="form-text">Approximate time to complete the course</div>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary" id="submitButton">
+                            Generate Course
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="alert alert-info mt-4">
+            <h4 class="alert-heading">How it works</h4>
+            <p>Our AI-powered system will generate a complete course structure based on your input. The process takes a few minutes to complete.</p>
+            <hr>
+            <p class="mb-0">After submission, you'll be redirected to a page where you can track the progress of your course generation.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/course-form.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Look Up Course{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card shadow">
+        <div class="card-header">
+          <h2>Look Up Your Course</h2>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Enter your course task ID to check its status or view the completed course.</p>
+          
+          <form method="GET" action="{{ url_for('lookup_course') }}">
+            <div class="mb-3">
+              <label for="task_id" class="form-label">Task ID</label>
+              <input type="text" class="form-control" id="task_id" name="task_id" 
+                     placeholder="Enter your task ID" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Look Up Course</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

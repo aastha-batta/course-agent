@@ -1,0 +1,25 @@
+<header class="bg-primary text-white py-3">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <a href="{{ url_for('index') }}" class="text-white text-decoration-none">
+                <h1 class="h3 mb-0">Educational Course Generator</h1>
+            </a>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url_for('courses_list') }}">My Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url_for('create_course_form') }}">Create Course</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ url_for('api_docs') }}">API Docs</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
