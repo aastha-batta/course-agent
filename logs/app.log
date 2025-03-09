@@ -1,0 +1,290 @@
+2025-03-09 08:47:57 - root - INFO - Application starting...
+2025-03-09 08:47:57 - root - INFO - 
+=== AI-Powered Course Generator ===
+
+2025-03-09 08:47:57 - root - INFO - Generating course on: Artificial Intelligence in Healthcare
+2025-03-09 08:47:57 - root - INFO - Depth: advanced
+2025-03-09 08:47:57 - root - INFO - Target audience: Healthcare professionals and AI researchers
+2025-03-09 08:47:57 - root - INFO - Course Duration: 6 weeks
+2025-03-09 08:47:57 - root - INFO - 
+Starting workflow...
+
+2025-03-09 08:52:03 - root - INFO - Application starting...
+2025-03-09 08:52:03 - root - INFO - 
+=== AI-Powered Course Generator ===
+
+2025-03-09 08:52:03 - root - INFO - Generating course on: Artificial Intelligence in Healthcare
+2025-03-09 08:52:03 - root - INFO - Depth: advanced
+2025-03-09 08:52:03 - root - INFO - Target audience: Healthcare professionals and AI researchers
+2025-03-09 08:52:03 - root - INFO - Course Duration: 6 weeks
+2025-03-09 08:52:03 - root - INFO - 
+Starting workflow...
+
+2025-03-09 08:52:03 - root - INFO - Coordinator delegating to researcher...
+2025-03-09 08:52:03 - root - INFO - 
+Researching topic: Artificial Intelligence in Healthcare at advanced level...
+2025-03-09 08:52:05 - root - INFO - Gathered 1 web sources and 5 academic sources
+2025-03-09 09:07:52 - root - INFO - Coordinator delegating to researcher...
+2025-03-09 09:07:52 - root - INFO - 
+Researching topic: Artificial Intelligence in Healthcare at advanced level...
+2025-03-09 09:07:54 - root - INFO - Gathered 1 web sources and 5 academic sources
+2025-03-09 09:11:41 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:11:41 - root - INFO - Research synthesis complete: 27762 characters
+2025-03-09 09:11:41 - root - INFO - Coordinator delegating to structurer...
+2025-03-09 09:11:54 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:11:54 - root - INFO - 
+Structure output from LLM:
+2025-03-09 09:11:54 - root - INFO - ```json
+{
+    "title": "Artificial Intelligence in Healthcare",
+    "description": "This course provides an in-depth exploration of the role of artificial intelligence in the healthcare sector. Participants will learn about core concepts, recent advancements, practical applications, and the challenges faced in integrating AI technologies into healthcare systems.",
+    "course_duration": "6 weeks",
+    "modules": [
+        {
+            "title": "Introduction to AI in Healthcare",
+            "de...
+2025-03-09 09:11:54 - root - INFO - Coordinator delegating to content_generator...
+2025-03-09 09:11:54 - root - INFO - 
+Structure received by ContentGenerationAgent:
+2025-03-09 09:11:54 - root - INFO - ```json
+{
+    "title": "Artificial Intelligence in Healthcare",
+    "description": "This course provides an in-depth exploration of the role of artificial intelligence in the healthcare sector. Participants will learn about core concepts, recent advancements, practical applications, and the challenges faced in integrating AI technologies into healthcare systems.",
+    "course_duration": "6 weeks",
+    "modules": [
+        {
+            "title": "Introduction to AI in Healthcare",
+            "de...
+2025-03-09 09:11:54 - root - INFO - 
+Successfully parsed structure. Course title: Artificial Intelligence in Healthcare
+2025-03-09 09:11:54 - root - INFO - Number of modules: 6
+2025-03-09 09:11:54 - root - INFO - 
+Processing module: Introduction to AI in Healthcare
+2025-03-09 09:11:54 - root - INFO -   Generating content for lesson: What is Artificial Intelligence?
+2025-03-09 09:12:07 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:12:07 - root - INFO -   Generating content for lesson: Core Concepts of AI
+2025-03-09 09:12:12 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:12:12 - root - INFO -   Generating content for lesson: The Role of AI in Healthcare
+2025-03-09 09:12:24 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:12:24 - root - INFO - 
+Processing module: Machine Learning and Its Applications
+2025-03-09 09:12:24 - root - INFO -   Generating content for lesson: Introduction to Machine Learning
+2025-03-09 09:12:32 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:12:32 - root - INFO -   Generating content for lesson: Predictive Analytics in Healthcare
+2025-03-09 09:12:39 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:12:39 - root - INFO -   Generating content for lesson: Case Studies in Diagnostic Assistance
+2025-03-09 09:12:48 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:12:48 - root - INFO - 
+Processing module: Natural Language Processing in Healthcare
+2025-03-09 09:12:48 - root - INFO -   Generating content for lesson: Understanding Natural Language Processing
+2025-03-09 09:12:53 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:12:53 - root - INFO -   Generating content for lesson: NLP Applications in Clinical Settings
+2025-03-09 09:13:04 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:13:04 - root - INFO -   Generating content for lesson: Challenges in NLP Implementation
+2025-03-09 09:13:15 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:13:15 - root - INFO - 
+Processing module: Advancements in AI Technologies
+2025-03-09 09:13:15 - root - INFO -   Generating content for lesson: AI and the Metaverse
+2025-03-09 09:13:18 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:13:18 - root - INFO -   Generating content for lesson: Cybersecurity in AI Systems
+2025-03-09 09:15:29 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:15:29 - root - INFO -   Generating content for lesson: Real-time Data Utilization
+2025-03-09 09:15:36 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:15:36 - root - INFO - 
+Processing module: Challenges and Ethical Considerations
+2025-03-09 09:15:36 - root - INFO -   Generating content for lesson: Data Privacy and Security
+2025-03-09 09:15:42 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:15:42 - root - INFO -   Generating content for lesson: Bias in AI Models
+2025-03-09 09:15:48 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:15:48 - root - INFO -   Generating content for lesson: Regulatory Compliance
+2025-03-09 09:15:55 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:15:55 - root - INFO - 
+Processing module: Future of AI in Healthcare
+2025-03-09 09:15:55 - root - INFO -   Generating content for lesson: Emerging Trends in AI
+2025-03-09 09:16:05 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:16:05 - root - INFO -   Generating content for lesson: Personalized Medicine and AI
+2025-03-09 09:16:14 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:16:14 - root - INFO -   Generating content for lesson: The Role of Virtual Health Assistants
+2025-03-09 09:16:25 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:16:25 - root - INFO - 
+Generating references...
+2025-03-09 09:16:40 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:16:40 - root - INFO - 
+Content generation complete!
+2025-03-09 09:16:40 - root - INFO - Coordinator delegating to validator...
+2025-03-09 09:16:48 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:16:48 - root - INFO - 
+Validating module: Introduction to AI in Healthcare
+2025-03-09 09:16:48 - root - INFO -   Validating lesson: What is Artificial Intelligence?
+2025-03-09 09:16:59 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:16:59 - root - INFO - 
+Validating module: Machine Learning and Its Applications
+2025-03-09 09:16:59 - root - INFO -   Validating lesson: Introduction to Machine Learning
+2025-03-09 09:17:11 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:17:26 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:17:26 - root - INFO - 
+Validation complete!
+2025-03-09 09:17:26 - root - ERROR - Error in task 4052480f-4f77-4441-8415-ec36a2e6938b: 'NoneType' object has no attribute 'get'
+2025-03-09 09:17:26 - werkzeug - INFO - 127.0.0.1 - - [09/Mar/2025 09:17:26] "POST /api/courses/ HTTP/1.1" 200 -
+2025-03-09 09:18:28 - werkzeug - INFO - 127.0.0.1 - - [09/Mar/2025 09:18:28] "[31m[1mGET /api/courses/4052480f-4f77-4441-8415-ec36a2e6938b/download HTTP/1.1[0m" 400 -
+2025-03-09 09:18:38 - werkzeug - INFO - 127.0.0.1 - - [09/Mar/2025 09:18:38] "GET /api/courses/4052480f-4f77-4441-8415-ec36a2e6938b HTTP/1.1" 200 -
+2025-03-09 09:23:49 - werkzeug - INFO -  * Detected change in '/home/aastha/Rag/course-agent/agents/validator.py', reloading
+2025-03-09 09:24:05 - root - INFO - Coordinator delegating to researcher...
+2025-03-09 09:24:05 - root - INFO - 
+Researching topic: Artificial Intelligence in Healthcare at advanced level...
+2025-03-09 09:24:06 - root - INFO - Gathered 1 web sources and 5 academic sources
+2025-03-09 09:24:15 - root - INFO - Coordinator delegating to researcher...
+2025-03-09 09:24:15 - root - INFO - 
+Researching topic: Artificial Intelligence in Healthcare at advanced level...
+2025-03-09 09:24:18 - root - INFO - Gathered 1 web sources and 5 academic sources
+2025-03-09 09:24:24 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:24:24 - root - INFO - Research synthesis complete: 5430 characters
+2025-03-09 09:24:24 - root - INFO - Coordinator delegating to structurer...
+2025-03-09 09:24:29 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:24:29 - root - INFO - Research synthesis complete: 4926 characters
+2025-03-09 09:24:29 - root - INFO - Coordinator delegating to structurer...
+2025-03-09 09:24:35 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:24:35 - root - INFO - 
+Structure output from LLM:
+2025-03-09 09:24:35 - root - INFO - {
+    "title": "Artificial Intelligence in Healthcare: Transforming Patient Care",
+    "description": "This course provides an in-depth exploration of the role of artificial intelligence in healthcare, covering core concepts, recent advancements, practical applications, and the challenges faced in the integration of AI technologies. Participants will gain insights into how AI is reshaping diagnostics, treatment, and patient management, while also addressing ethical considerations and future tren...
+2025-03-09 09:24:35 - root - INFO - Coordinator delegating to content_generator...
+2025-03-09 09:24:35 - root - INFO - 
+Structure received by ContentGenerationAgent:
+2025-03-09 09:24:35 - root - INFO - {
+    "title": "Artificial Intelligence in Healthcare: Transforming Patient Care",
+    "description": "This course provides an in-depth exploration of the role of artificial intelligence in healthcare, covering core concepts, recent advancements, practical applications, and the challenges faced in the integration of AI technologies. Participants will gain insights into how AI is reshaping diagnostics, treatment, and patient management, while also addressing ethical considerations and future tren...
+2025-03-09 09:24:35 - root - INFO - 
+Successfully parsed structure. Course title: Artificial Intelligence in Healthcare: Transforming Patient Care
+2025-03-09 09:24:35 - root - INFO - Number of modules: 1
+2025-03-09 09:24:35 - root - INFO - 
+Processing module: Understanding AI in Healthcare
+2025-03-09 09:24:35 - root - INFO -   Generating content for lesson: Introduction to AI and Machine Learning in Healthcare
+2025-03-09 09:24:39 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:24:39 - root - INFO - 
+Structure output from LLM:
+2025-03-09 09:24:39 - root - INFO - {
+    "title": "Artificial Intelligence in Healthcare",
+    "description": "This course provides a comprehensive overview of the application of artificial intelligence in the healthcare sector. Participants will explore core concepts, recent advancements, practical applications, and the challenges faced in implementing AI technologies in healthcare settings. The course aims to equip learners with the knowledge and skills necessary to understand and leverage AI in improving healthcare outcomes.",...
+2025-03-09 09:24:39 - root - INFO - Coordinator delegating to content_generator...
+2025-03-09 09:24:39 - root - INFO - 
+Structure received by ContentGenerationAgent:
+2025-03-09 09:24:39 - root - INFO - {
+    "title": "Artificial Intelligence in Healthcare",
+    "description": "This course provides a comprehensive overview of the application of artificial intelligence in the healthcare sector. Participants will explore core concepts, recent advancements, practical applications, and the challenges faced in implementing AI technologies in healthcare settings. The course aims to equip learners with the knowledge and skills necessary to understand and leverage AI in improving healthcare outcomes.",...
+2025-03-09 09:24:39 - root - INFO - 
+Successfully parsed structure. Course title: Artificial Intelligence in Healthcare
+2025-03-09 09:24:39 - root - INFO - Number of modules: 5
+2025-03-09 09:24:39 - root - INFO - 
+Processing module: Core Concepts of AI in Healthcare
+2025-03-09 09:24:39 - root - INFO -   Generating content for lesson: Introduction to AI and Healthcare
+2025-03-09 09:24:44 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:24:44 - root - INFO -   Generating content for lesson: Natural Language Processing and Its Impact
+2025-03-09 09:24:46 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:24:46 - root - INFO -   Generating content for lesson: Understanding Machine Learning
+2025-03-09 09:24:49 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:24:49 - root - INFO -   Generating content for lesson: Computer Vision in Medical Imaging
+2025-03-09 09:24:52 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:24:52 - root - INFO -   Generating content for lesson: Natural Language Processing in Healthcare
+2025-03-09 09:24:55 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:24:55 - root - INFO -   Generating content for lesson: Federated Learning and Data Privacy
+2025-03-09 09:24:59 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:24:59 - root - INFO -   Generating content for lesson: The Role of Computer Vision
+2025-03-09 09:25:06 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:25:06 - root - INFO -   Generating content for lesson: Challenges and Ethical Considerations
+2025-03-09 09:25:06 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:25:06 - root - INFO -   Generating content for lesson: Federated Learning and Data Privacy
+2025-03-09 09:25:12 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:25:12 - root - INFO - 
+Processing module: Recent Advancements in AI Technologies
+2025-03-09 09:25:12 - root - INFO -   Generating content for lesson: AI and the Metaverse in Healthcare
+2025-03-09 09:25:12 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:25:12 - root - INFO - 
+Generating references...
+2025-03-09 09:25:20 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:25:20 - root - INFO - 
+Content generation complete!
+2025-03-09 09:25:20 - root - INFO - Coordinator delegating to validator...
+2025-03-09 09:25:20 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:25:20 - root - INFO -   Generating content for lesson: Cybersecurity in Healthcare AI
+2025-03-09 09:25:27 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:25:27 - root - INFO -   Generating content for lesson: Personalized Medicine through AI
+2025-03-09 09:25:27 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:25:27 - root - INFO - 
+Validating module: Understanding AI in Healthcare
+2025-03-09 09:25:27 - root - INFO -   Validating lesson: Introduction to AI and Machine Learning in Healthcare
+2025-03-09 09:25:34 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:25:36 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:25:36 - root - INFO -   Generating content for lesson: Predictive Analytics in Healthcare
+2025-03-09 09:25:41 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:25:41 - root - INFO - 
+Processing module: Practical Applications of AI in Healthcare
+2025-03-09 09:25:41 - root - INFO -   Generating content for lesson: AI in Diagnostic Assistance
+2025-03-09 09:25:42 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:25:42 - root - INFO - 
+Validation complete!
+2025-03-09 09:25:42 - root - INFO - Task dd5a6988-6620-4ab0-b393-0ad825afcc97 completed successfully
+2025-03-09 09:25:42 - werkzeug - INFO - 127.0.0.1 - - [09/Mar/2025 09:25:42] "POST /api/courses/ HTTP/1.1" 200 -
+2025-03-09 09:26:11 - werkzeug - INFO - 127.0.0.1 - - [09/Mar/2025 09:26:11] "GET /api/courses/dd5a6988-6620-4ab0-b393-0ad825afcc97/download HTTP/1.1" 200 -
+2025-03-09 09:29:26 - werkzeug - INFO -  * Detected change in '/home/aastha/Rag/course-agent/agents/validator.py', reloading
+2025-03-09 09:29:41 - root - INFO - Coordinator delegating to researcher...
+2025-03-09 09:29:41 - root - INFO - 
+Researching topic: Artificial Intelligence in Healthcare at advanced level...
+2025-03-09 09:29:43 - root - INFO - Gathered 1 web sources and 5 academic sources
+2025-03-09 09:30:00 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:30:00 - root - INFO - Research synthesis complete: 5093 characters
+2025-03-09 09:30:00 - root - INFO - Coordinator delegating to structurer...
+2025-03-09 09:30:14 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:30:14 - root - INFO - 
+Structure output from LLM:
+2025-03-09 09:30:14 - root - INFO - {
+    "title": "Artificial Intelligence in Healthcare: Transforming Patient Care",
+    "description": "This course provides an in-depth exploration of the role of artificial intelligence in healthcare, covering core concepts, recent advancements, practical applications, and the challenges faced in implementation. Participants will gain a comprehensive understanding of how AI technologies are reshaping the healthcare landscape and improving patient outcomes.",
+    "course_duration": "1 week",
+   ...
+2025-03-09 09:30:14 - root - INFO - Coordinator delegating to content_generator...
+2025-03-09 09:30:14 - root - INFO - 
+Structure received by ContentGenerationAgent:
+2025-03-09 09:30:14 - root - INFO - {
+    "title": "Artificial Intelligence in Healthcare: Transforming Patient Care",
+    "description": "This course provides an in-depth exploration of the role of artificial intelligence in healthcare, covering core concepts, recent advancements, practical applications, and the challenges faced in implementation. Participants will gain a comprehensive understanding of how AI technologies are reshaping the healthcare landscape and improving patient outcomes.",
+    "course_duration": "1 week",
+   ...
+2025-03-09 09:30:14 - root - INFO - 
+Successfully parsed structure. Course title: Artificial Intelligence in Healthcare: Transforming Patient Care
+2025-03-09 09:30:14 - root - INFO - Number of modules: 1
+2025-03-09 09:30:14 - root - INFO - 
+Processing module: Understanding AI in Healthcare
+2025-03-09 09:30:14 - root - INFO -   Generating content for lesson: Introduction to AI and Healthcare
+2025-03-09 09:30:24 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:30:24 - root - INFO -   Generating content for lesson: Key AI Technologies in Healthcare
+2025-03-09 09:30:32 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:30:32 - root - INFO -   Generating content for lesson: Recent Advancements in AI
+2025-03-09 09:30:40 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:30:40 - root - INFO -   Generating content for lesson: Practical Applications of AI
+2025-03-09 09:30:48 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:30:48 - root - INFO -   Generating content for lesson: Challenges and Solutions in AI Implementation
+2025-03-09 09:30:54 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:30:54 - root - INFO - 
+Generating references...
+2025-03-09 09:31:04 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:31:04 - root - INFO - 
+Content generation complete!
+2025-03-09 09:31:04 - root - INFO - Coordinator delegating to validator...
+2025-03-09 09:31:16 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:31:16 - root - INFO - 
+Validating module: Understanding AI in Healthcare
+2025-03-09 09:31:16 - root - INFO -   Validating lesson: Introduction to AI and Healthcare
+2025-03-09 09:31:25 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:31:40 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-09 09:31:40 - root - INFO - 
+Validation results:
+2025-03-09 09:31:40 - root - INFO - Issues: []
+2025-03-09 09:31:40 - root - INFO - Improvements: [{'type': 'course_level', 'feedback': '### Assessment of the Course on "Artificial Intelligence in Healthcare"\n\n1. **Course Title Evaluation**:\n   - **Clarity**: The title "Artificial Intelligence in Healthcare: Transforming Patient Care" is clear and effectively communicates the primary focus of the course. It indicates that the course will explore AI\'s impact on patient care, which is a relevant and timely topic.\n   - **Accuracy**: The title accurately reflects the content as it suggests a focus on both AI technologies and their transformative effects on healthcare. However, it could be enhanced by including terms like "applications" or "challenges" to hint at the comprehensive nature of the course.\n\n   **Improvement Suggestion**: Consider revising the title to something like "Artificial Intelligence in Healthcare: Applications, Challenges, and Transforming Patient Care" to better encapsulate the breadth of the course content.\n\n2. **Course Description Evaluation**:\n   - **Comprehensiveness**: The description provides a solid overview of the course\'s objectives, mentioning core concepts, advancements, applications, and challenges. However, it could be more specific about what participants can expect to learn or the format of the course (e.g., lectures, case studies, hands-on projects).\n   - **Engagement**: While the description is informative, it lacks a compelling hook that could draw potential participants in. Adding a statement about the significance of AI in improving patient outcomes or a real-world example could enhance engagement.\n\n   **Improvement Suggestion**: Revise the description to include specific learning outcomes and a more engaging opening. For example: "Join us to discover how cutting-edge AI technologies are revolutionizing patient care, from predictive analytics to personalized treatment plans. This course will equip you with the knowledge to navigate the complexities of AI in healthcare, including practical applications and the challenges of implementation."\n\n3. **Overall Structure Evaluation**:\n   - **Logical Flow**: The structure implied by the title and description seems logical, starting with core concepts and moving through advancements to applications and challenges. However, it would be beneficial to outline the course structure more explicitly, such as breaking it down into modules or sections.\n   - **Cohesion**: Ensuring that each section builds on the previous one will help maintain a cohesive learning experience. It would be helpful to clarify how each part of the course interrelates.\n\n   **Improvement Suggestion**: Consider providing a brief outline of the course structure in the description, such as: "The course is divided into four key modules: 1) Introduction to AI in Healthcare, 2) Recent Advancements, 3) Practical Applications, and 4) Challenges and Future Directions." This will help learners understand the flow and organization of the content.\n\n### Summary of Recommendations:\n- Revise the course title to better reflect the comprehensive nature of the content.\n- Enhance the course description by adding specific learning outcomes and a more engaging introduction.\n- Provide a clear outline of the course structure to improve logical flow and cohesion.\n\nBy implementing these suggestions, the course can become more appealing and informative for potential participants, ultimately enhancing their learning experience.'}, {'type': 'lesson_level', 'module': 'Understanding AI in Healthcare', 'lesson': 'Introduction to AI and Healthcare', 'feedback': '### Evaluation of the Lesson "Introduction to AI and Healthcare"\n\n1. **Content Accuracy**:\n   - The information presented is generally accurate and reflects the current understanding of AI in healthcare as of October 2023. The definition of AI and its applications in healthcare, such as analyzing medical data and enhancing diagnostic accuracy, are well-established concepts. However, it would be beneficial to include recent statistics or examples from peer-reviewed studies to reinforce the claims made about AI\'s effectiveness in diagnostics and treatment personalization.\n\n2. **Content Completeness**:\n   - While the lesson introduces key concepts and applications of AI in healthcare, it appears to be truncated, which limits its completeness. To enhance this section, consider including:\n     - A broader range of AI applications in healthcare, such as predictive analytics, natural language processing in electronic health records, and AI in drug discovery.\n     - Ethical considerations and challenges associated with AI in healthcare, such as data privacy, bias in algorithms, and the importance of human oversight.\n     - Future trends in AI technology and its potential impact on healthcare delivery.\n\n3. **Instructional Quality**:\n   - The lesson is written in clear and accessible language, making it easy for learners to understand the fundamental concepts of AI in healthcare. However, to improve instructional quality:\n     - Incorporate visual aids such as diagrams or infographics to illustrate complex processes or data flows in AI applications.\n     - Use real-world case studies or examples to contextualize the information, helping learners relate to the material better.\n\n4. **Engagement**:\n   - The lesson has the potential to engage learners, especially with the promise of discussing transformative technologies. To further enhance engagement:\n     - Include interactive elements, such as quizzes or discussion prompts, to encourage active participation.\n     - Pose thought-provoking questions at the end of the lesson to stimulate critical thinking and discussion among learners, such as "What are the potential risks of relying on AI in healthcare?" or "How can we ensure that AI systems are equitable and unbiased?"\n\n### Specific Suggestions for Improvement:\n- **Add Recent Examples**: Include case studies or recent advancements in AI applications in healthcare to provide context and relevance.\n- **Expand on Ethical Considerations**: Discuss the ethical implications of AI in healthcare, including issues of bias, transparency, and accountability.\n- **Visual Aids**: Incorporate charts, graphs, or images to break up text and illustrate key points visually.\n- **Interactive Components**: Introduce quizzes, polls, or discussion questions to foster engagement and reinforce learning.\n- **Future Trends**: Discuss emerging trends in AI technology and their potential implications for the future of healthcare.\n\nBy addressing these areas, the lesson can become a more comprehensive, engaging, and informative resource for learners interested in the intersection of AI and healthcare.'}, {'type': 'structure_level', 'feedback': 'To evaluate the module structure for the course on "Artificial Intelligence in Healthcare," we can analyze the provided module title, "Understanding AI in Healthcare," and consider the following aspects:\n\n### 1. Logical Flow of Modules\n- **Flow**: Since only one module title is provided, it\'s challenging to assess the logical flow comprehensively. However, if "Understanding AI in Healthcare" is the introductory module, it should ideally lead into more specialized topics, such as applications of AI in diagnostics, treatment planning, patient management, ethical considerations, and future trends in AI technology.\n- **Recommendation**: If additional modules exist, ensure they build on the foundational knowledge established in the introductory module. For example, after "Understanding AI in Healthcare," subsequent modules could cover specific applications, case studies, and advanced topics.\n\n### 2. Redundancy or Gaps in the Curriculum\n- **Redundancy**: Without additional module titles, it\'s difficult to identify redundancy. However, if multiple modules cover similar aspects of AI without adding new insights or perspectives, that would be redundant.\n- **Gaps**: The curriculum should cover a range of topics, including:\n  - Basics of AI and machine learning\n  - Specific applications in healthcare (e.g., imaging, predictive analytics)\n  - Ethical and regulatory considerations\n  - Challenges and limitations of AI in healthcare\n  - Future trends and innovations\n- **Recommendation**: Ensure that the curriculum addresses both the technical and ethical dimensions of AI in healthcare to provide a well-rounded education.\n\n### 3. Difficulty Progression\n- **Appropriateness of Difficulty**: The difficulty progression should start with foundational concepts and gradually introduce more complex topics. If "Understanding AI in Healthcare" is an introductory module, it should be accessible to learners with varying backgrounds.\n- **Recommendation**: Follow the introductory module with intermediate and advanced modules that require a deeper understanding of AI technologies and their applications in healthcare. Consider including hands-on projects or case studies to enhance learning.\n\n### Overall Course Structure Feedback\n- **Strengths**: If "Understanding AI in Healthcare" serves as a solid foundation, it can effectively introduce learners to the subject matter.\n- **Areas for Improvement**:\n  - **Expand the Curriculum**: Consider adding more modules that cover a broader range of topics related to AI in healthcare, ensuring a comprehensive understanding.\n  - **Ensure Logical Progression**: Design the modules to flow logically from basic to advanced topics, facilitating a smooth learning experience.\n  - **Address Redundancy and Gaps**: Regularly review the curriculum to eliminate redundancy and fill any gaps in knowledge, particularly in emerging areas of AI in healthcare.\n\nIn summary, while the single module title provides a starting point, a complete evaluation would require a detailed overview of the entire curriculum. Ensuring a logical flow, addressing redundancy and gaps, and maintaining appropriate difficulty progression will enhance the overall effectiveness of the course.'}]
+2025-03-09 09:31:40 - root - INFO - 
+Validation complete!
+2025-03-09 09:31:40 - root - INFO - Task 95de92f9-af2a-42ab-aa2a-c079e3478d15 completed successfully
+2025-03-09 09:31:40 - werkzeug - INFO - 127.0.0.1 - - [09/Mar/2025 09:31:40] "POST /api/courses/ HTTP/1.1" 200 -
+2025-03-09 09:32:22 - werkzeug - INFO - 127.0.0.1 - - [09/Mar/2025 09:32:22] "GET /api/courses/95de92f9-af2a-42ab-aa2a-c079e3478d15/download HTTP/1.1" 200 -
+2025-03-09 09:32:50 - werkzeug - INFO -  * Detected change in '/home/aastha/Rag/course-agent/agents/validator.py', reloading
