@@ -43,11 +43,11 @@
                     </div>
                 </div>
                 <h2>Generating Your Course</h2>
-                <p class="text-muted">This process usually takes a few minutes. You'll be notified when it's complete.</p>
+                <p class="text-muted">Please wait while we prepare your course on "{{ course.topic }}"</p>
                 <div class="progress mt-3" style="height: 10px;">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 75%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div>
                 </div>
-            {% elif course.status == 'failed' %}
+            {% elif course.status == 'failed' or course.status == 'error' %}
                 <div class="mb-4 text-danger">
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -55,7 +55,7 @@
                     </svg>
                 </div>
                 <h2>Course Generation Failed</h2>
-                <p class="text-muted">{{ course.error or "There was an error generating your course. Please try again." }}</p>
+                <p class="text-muted">{{ course.error_message or "There was an error generating your course. Please try again." }}</p>
                 <a href="{{ url_for('create_course_form') }}" class="btn btn-primary mt-3">Create New Course</a>
             {% endif %}
         </div>
@@ -82,7 +82,7 @@
                         <span class="badge bg-warning text-dark">Queued</span>
                     {% elif course.status == 'processing' %}
                         <span class="badge bg-primary">Processing</span>
-                    {% elif course.status == 'failed' %}
+                    {% elif course.status == 'failed' or course.status == 'error' %}
                         <span class="badge bg-danger">Failed</span>
                     {% endif %}
                 </dd>
@@ -94,9 +94,8 @@
     </div>
 
     {% if course.status == 'processing' or course.status == 'queued' %}
-        <div class="text-center mt-4">
-            <p class="text-muted">This page will automatically refresh to check the status.</p>
-            <button class="btn btn-outline-secondary" onclick="location.reload()">Refresh Now</button>
+        <div class="text-center mt-4" id="refreshContainer">
+            <p class="text-muted">Checking for updates automatically... <span id="countdownTimer">5</span></p>
         </div>
     {% endif %}
 
@@ -110,11 +109,11 @@
             <div class="d-flex justify-content-between align-items-center mt-4">
                 <div>
                     <span class="badge bg-success me-2">Completed</span>
-                    <span class="badge bg-secondary me-2">{{ course_data.depth|title }}</span>
-                    <span class="badge bg-info text-dark">{{ course_data.course_duration }}</span>
+                    <span class="badge bg-secondary me-2">{{ course.depth|title }}</span>
+                    <span class="badge bg-info text-dark">{{ course.course_duration }}</span>
                 </div>
                 <div>
-                    <a href="{{ url_for('download_course', task_id=course.id) }}" class="btn btn-outline-primary">
+                    <a href="{{ url_for('download_course', task_id=course.task_id) }}" class="btn btn-outline-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
                             <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
                             <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
@@ -139,33 +138,20 @@
                             <button class="accordion-button {% if not loop.first %}collapsed{% endif %}" type="button" 
                                     data-bs-toggle="collapse" data-bs-target="#module-content-{{ loop.index }}" 
                                     aria-expanded="{{ 'true' if loop.first else 'false' }}" aria-controls="module-content-{{ loop.index }}">
-                                Module {{ loop.index }}: {{ module.title }}
+                                {{ module.title }}
                             </button>
                         </h2>
                         <div id="module-content-{{ loop.index }}" class="accordion-collapse collapse {% if loop.first %}show{% endif %}" 
                              aria-labelledby="module-heading-{{ loop.index }}">
                             <div class="accordion-body">
                                 <p>{{ module.description }}</p>
-                                <p><strong>Duration:</strong> {{ module.duration }}</p>
                                 
                                 <h4 class="mt-4">Lessons</h4>
                                 <ul class="list-group">
                                     {% for lesson in module.lessons %}
                                         <li class="list-group-item">
                                             <h5>{{ lesson.title }}</h5>
-                                            <p>{{ lesson.content|truncate(150) }}</p>
-                                            
-                                            {% if lesson.exercises %}
-                                                <div class="mt-2">
-                                                    <strong>Exercises:</strong> {{ lesson.exercises|length }} available
-                                                </div>
-                                            {% endif %}
-                                            
-                                            {% if lesson.resources %}
-                                                <div class="mt-2">
-                                                    <strong>Resources:</strong> {{ lesson.resources|length }} available
-                                                </div>
-                                            {% endif %}
+                                            <p>{{ lesson.content }}</p>
                                         </li>
                                     {% endfor %}
                                 </ul>
@@ -183,7 +169,7 @@
             <h2 class="h4 mb-0">Refine This Course</h2>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ url_for('refine_course_submit', task_id=course.id) }}">
+            <form method="POST" action="{{ url_for('refine_course_submit', task_id=course.task_id) }}">
                 <div class="mb-3">
                     <label for="refinement_type" class="form-label">Refinement Type</label>
                     <select class="form-select" id="refinement_type" name="refinement_type">
@@ -204,38 +190,44 @@
             </form>
         </div>
     </div>
-    
-    <!-- Previous Refinements -->
-    {% if course_data.validation_results and course_data.validation_results.refinements %}
-        <div class="card">
-            <div class="card-header">
-                <h2 class="h4 mb-0">Previous Refinements</h2>
-            </div>
-            <div class="card-body">
-                <div class="list-group">
-                    {% for refinement in course_data.validation_results.refinements %}
-                        <div class="list-group-item">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">{{ refinement.type|title }} Refinement</h5>
-                                <small>{{ refinement.applied_at }}</small>
-                            </div>
-                            <p class="mb-1">{{ refinement.instructions }}</p>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    {% endif %}
 {% endif %}
 {% endblock %}
 
 {% block extra_js %}
 {% if course.status == 'processing' or course.status == 'queued' %}
 <script>
-    // Auto-refresh the page every 5 seconds if the course is being processed
-    setTimeout(function() {
-        location.reload();
-    }, 5000);
+    // Set up automatic refresh with countdown
+    let countdown = 5;
+    const countdownElement = document.getElementById('countdownTimer');
+    
+    const countdownInterval = setInterval(function() {
+        countdown -= 1;
+        if (countdown <= 0) {
+            clearInterval(countdownInterval);
+            location.reload();
+        } else {
+            countdownElement.textContent = countdown;
+        }
+    }, 1000);
+    
+    // Also check status via AJAX to avoid full page refreshes when possible
+    const checkStatus = function() {
+        fetch('/courses/{{ course.task_id }}/status')
+            .then(response => response.json())
+            .then(data => {
+                if (data.completed) {
+                    // Course is complete, refresh the page to show the course
+                    location.reload();
+                } else if (data.error) {
+                    // Course failed, refresh the page to show the error
+                    location.reload(); 
+                }
+                // Otherwise, we'll let the countdown handle the refresh
+            });
+    };
+    
+    // Check status every 2 seconds
+    setInterval(checkStatus, 2000);
 </script>
 {% endif %}
 {% endblock %}

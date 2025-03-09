@@ -8,27 +8,28 @@
         {% elif course.get('status') == 'processing' %}
             <span class="badge bg-primary">Processing</span>
             <div class="progress mt-2">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 75%"></div>
+                <div class="progress-bar progress-bar-striped progress-bar-animated w-100" role="progressbar"></div>
             </div>
         {% elif course.get('status') == 'queued' %}
             <span class="badge bg-warning text-dark">Queued</span>
-        {% elif course.get('status') == 'failed' %}
+        {% elif course.get('status') == 'error' or course.get('status') == 'failed' %}
             <span class="badge bg-danger">Failed</span>
         {% endif %}
         
         <p class="card-text mt-2">{{ course.get('target_audience', 'General audience') }}</p>
         
-        {% if course.get('modules_count') %}
-            <p class="card-text"><small class="text-muted">{{ course.get('modules_count') }} Modules</small></p>
-        {% endif %}
-        
         <p class="card-text"><small class="text-muted">Created: {{ course.get('created_at', '')|truncate(16) }}</small></p>
         
         <div class="d-grid gap-2">
-            <a href="{{ url_for('view_course', task_id=course.get('id')) }}" class="btn btn-primary">View Course</a>
+            <a href="{{ url_for('view_course', task_id=course.get('task_id')) }}" class="btn btn-primary">
+                {% if course.get('status') == 'processing' %}
+                    <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                {% endif %}
+                View Course
+            </a>
             
             {% if course.get('status') == 'completed' %}
-                <a href="{{ url_for('download_course', task_id=course.get('id')) }}" class="btn btn-outline-secondary">Download JSON</a>
+                <a href="{{ url_for('download_course', task_id=course.get('task_id')) }}" class="btn btn-outline-secondary">Download JSON</a>
             {% endif %}
         </div>
     </div>

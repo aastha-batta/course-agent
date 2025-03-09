@@ -7,33 +7,36 @@
   <div class="row">
     <div class="col-md-8 offset-md-2">
       <div class="card shadow">
-        <div class="card-header bg-success text-white">
+        <div class="card-header bg-primary text-white">
           <h2>Course Generation Started</h2>
         </div>
-        <div class="card-body">
-          <div class="alert alert-info">
-            <p><strong>Your course on "{{ topic }}" is being generated.</strong></p>
-            <p>This may take a few minutes to complete.</p>
+        <div class="card-body text-center py-5">
+          <div class="mb-4">
+            <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          
+          <h3 class="mb-3">Generating Your Course on "{{ topic }}"</h3>
+          <p class="text-muted mb-4">Please wait while we create your course content...</p>
+          
+          <div class="progress mb-4" style="height: 10px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated w-100" role="progressbar"></div>
+          </div>
+          
+          <div id="statusMessage" class="alert alert-info">
+            Your course is being generated. This page will automatically redirect when it's ready.
           </div>
 
           <div class="mb-4">
-            <h4>Your Task ID:</h4>
-            <div class="input-group">
+            <h5>Your Task ID:</h5>
+            <div class="input-group" style="max-width: 400px; margin: 0 auto;">
               <input type="text" class="form-control" value="{{ task_id }}" id="taskIdField" readonly>
               <button class="btn btn-outline-secondary" type="button" onclick="copyTaskId()">
-                <i class="fas fa-copy"></i> Copy
+                Copy
               </button>
             </div>
-            <small class="text-muted">Save this ID to check on your course later</small>
-          </div>
-
-          <div class="d-flex justify-content-between">
-            <a href="{{ url_for('courses_list') }}" class="btn btn-secondary">
-              <i class="fas fa-list"></i> All Courses
-            </a>
-            <a href="{{ url_for('view_course', task_id=task_id) }}" class="btn btn-primary">
-              <i class="fas fa-eye"></i> Check Status
-            </a>
+            <small class="text-muted">Save this ID in case you need to return later</small>
           </div>
         </div>
       </div>
@@ -50,10 +53,38 @@ function copyTaskId() {
   // Visual feedback
   const button = event.currentTarget;
   const originalText = button.innerHTML;
-  button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+  button.innerHTML = 'Copied!';
   setTimeout(() => {
     button.innerHTML = originalText;
   }, 2000);
 }
+
+// Check status and redirect when complete
+const checkStatus = function() {
+  fetch('/courses/{{ task_id }}/status')
+    .then(response => response.json())
+    .then(data => {
+      if (data.completed) {
+        // Course is ready, redirect to view page
+        window.location.href = '/courses/{{ task_id }}';
+      } else if (data.error) {
+        // Show error and provide link to view page
+        document.getElementById('statusMessage').className = 'alert alert-danger';
+        document.getElementById('statusMessage').innerHTML = 
+          'There was an error generating your course. <a href="/courses/{{ task_id }}">View details</a>';
+      } else {
+        // Still processing, check again in 2 seconds
+        setTimeout(checkStatus, 2000);
+      }
+    })
+    .catch(error => {
+      console.error('Error checking status:', error);
+      // Try again in 5 seconds if there was an error
+      setTimeout(checkStatus, 5000);
+    });
+};
+
+// Start checking for updates
+checkStatus();
 </script>
 {% endblock %}

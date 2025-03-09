@@ -3,32 +3,22 @@
 {% block title %}Home - Educational Course Generator{% endblock %}
 
 {% block content %}
-<div class="jumbotron bg-light p-5 rounded">
-    <h1 class="display-4">Welcome to the Educational Course Generator</h1>
-    <p class="lead">Create personalized educational courses on any topic with our AI-powered generator.</p>
+<div class="jumbotron bg-light p-5 rounded mb-4">
+    <h1 class="display-4">Educational Course Generator</h1>
+    <p class="lead">Create personalized educational courses on any topic.</p>
     <hr class="my-4">
-    <p>Our intelligent system analyzes your topic and generates structured courses tailored to your specific needs.</p>
-    <a class="btn btn-primary btn-lg" href="{{ url_for('create_course_form') }}" role="button">Create a Course</a>
-    {% if recent_courses %}
-        <a class="btn btn-outline-secondary btn-lg ms-2" href="{{ url_for('courses_list') }}" role="button">View My Courses</a>
-    {% endif %}
-</div>
-
-<!-- Course lookup card -->
-<div class="card shadow mb-4 mt-5">
-  <div class="card-header">
-    <h3>Already Generated a Course?</h3>
-  </div>
-  <div class="card-body">
-    <p>If you've already started generating a course, you can look it up using your task ID.</p>
-    <a href="{{ url_for('lookup_course_form') }}" class="btn btn-primary">
-      <i class="fas fa-search"></i> Look Up Course
-    </a>
-  </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary btn-lg" href="{{ url_for('create_course_form') }}" role="button">
+            Create a Course
+        </a>
+        <a class="btn btn-outline-secondary btn-lg" href="{{ url_for('lookup_course_form') }}" role="button">
+            Look Up Course
+        </a>
+    </div>
 </div>
 
 {% if recent_courses %}
-<div class="mt-5">
+<div class="mt-4 mb-5">
     <h2>Your Recent Courses</h2>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
         {% for course in recent_courses %}
@@ -43,28 +33,28 @@
 </div>
 {% endif %}
 
-<div class="row mt-5">
+<div class="row">
     <div class="col-md-4">
         <div class="card h-100">
             <div class="card-body">
-                <h3 class="card-title">AI-Powered</h3>
-                <p class="card-text">Our system leverages advanced AI to create comprehensive and structured courses.</p>
+                <h3 class="card-title h5">Simple to Use</h3>
+                <p class="card-text">Just enter your topic and we'll generate a complete course structure for you.</p>
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="card h-100">
             <div class="card-body">
-                <h3 class="card-title">Customizable</h3>
-                <p class="card-text">Tailor courses to your specific audience and desired depth of coverage.</p>
+                <h3 class="card-title h5">Fast Generation</h3>
+                <p class="card-text">Get your course generated in minutes, not hours.</p>
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="card h-100">
             <div class="card-body">
-                <h3 class="card-title">Refinable</h3>
-                <p class="card-text">Continuously improve your courses with our refinement features.</p>
+                <h3 class="card-title h5">Customizable</h3>
+                <p class="card-text">Refine and adapt your course to better meet your specific needs.</p>
             </div>
         </div>
     </div>
