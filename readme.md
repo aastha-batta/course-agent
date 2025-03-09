@@ -16,7 +16,7 @@ The system employs multiple specialized agents working together to create compre
 
 ## System Architecture
 
-![User Interface](https://i.imgur.com/a/y4OF6Lm.png)
+![User Interface](docs/UI.png)
 
 ### Core Agents
 
